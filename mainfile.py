@@ -1,42 +1,51 @@
-def comp_chooser(computer):
+def comp_chooser(computer, question1, question2, question3, question4):
     output = []
+    for i in computer:
+        if question2 == "Gaming" or "Streaming" or "Content Creating":
+            if question3 == "y":
+                if i["GPU Intensive"] == True:
+                      if i["CPU Intensive"] and i["RAM Intensive"] == True:
+                            if question1 == "Low-Cost":
+                                if i["Low-Cost"] == True:
+                                    output.append(i["name"])
+                            if question1 == "Average":
+                                if i["Average"] == True:
+                                    output.append(i["name"])
+                            if question1 == "High-Cost":
+                                if i["High-Cost"] == True:
+                                    output.append(i["name"])
+        if question2 == "General Use" and question1 == "Low-Cost":
+            if i["Low-Cost"] == True:
+                if i["GPU Intensive"] == False:
+                    output.append(i["name"])
+        if question2 == "General Use" and question1 == "High-Cost":
+            if i["High-Cost"] == True:
+                if i["GPU Intensive"] == False:
+                    output.append(i["name"])
+        elif question2 == "General Use" and (question3 or question4 == "n"):
+            print("Such a computer does not exist")
+        if question2 == "Program Development" or question4 == "y":
+            if question3 == "n":
+                if i["CPU Intensive"] and i["RAM Intensive"] == True:
+                    if i["GPU Intensive"] == False:
+                        if question1 == "Low-Cost":
+                            if i["Low-Cost"] == True:
+                                output.append(i["name"])
+                        if question1 == "Average":
+                            if i["Average"] == True:
+                                output.append(i["name"])
+                        if question1 == "High-Cost":
+                            if i["High-Cost"] == True:
+                                output.append(i["name"])
+    return print(output)
+
+def main():
     print("Disclaimer: Use the prompts in the parantheses to answer the questions otherwise the program will not work")
     b = str(input("What is your budget (Low-Cost($0 - $1099), Average($1100 - $1499), or High-Cost($1500 +))?: "))
     g = str(input("What are you going to use this laptop for?(General Use(School or work), Gaming, Streaming, Content Creating(photo editing, video editing, art), Program Development): "))
     r = str(input("Are you going to be using graphics intensive programs(y/n): "))
     m = str(input("Are you going to be multitasking or using multiple apps and programs at the same time(y/n)?: "))
-    for i in computer:
-        if g == "Gaming" or "Streaming" or "Content Creating":
-            if r == "y":
-                if i["GPU Intensive"] == True:
-                      if i["CPU Intensive"] and i["RAM Intensive"] == True:
-                            if b == "Low-Cost":
-                                if i["Low-Cost"] == True:
-                                    output.append(i["name"])
-                            if b == "Average":
-                                if i["Average"] == True:
-                                    output.append(i["name"])
-                            if b == "High-Cost":
-                                if i["High-Cost"] == True:
-                                    output.append(i["name"])
-        if g == "General Use" and b == "Low-Cost":
-            if i["Low-Cost"] == True:
-                if i["GPU Intensive"] == False:
-                    output.append(i["name"])
-        if g == "General Use" and b == "High-Cost":
-            if i["High-Cost"] == True:
-                if i["GPU Intensive"] == False:
-                    output.append(i["name"])
-        elif g == "General Use" and (r or m == "n"):
-            print("Such a computer does not exist")
-        if g == "Program Development" or m == "y":
-            if r == "n":
-                if i["CPU Intensive"] and i["RAM Intensive"] == True:
-                    if i["GPU Intensive"] == False:
-                        output.append(i["name"])
-    return print(output)
 
-def main():
     legion5gen7 = {
         "name": "Legion 5 Gen 7 (15” AMD) Gaming Laptop",
         "CPU Intensive": True,
@@ -352,7 +361,7 @@ def main():
                thinkpadz13, legion5gen6, legion5gen7, legion5igen7, legion5progen7, legionslim7igen7, legionslim7gen7,
                legionpro5igen8, legion7gen7, legionpro7igen8, legion7igen7, legion5iprogen7]
 
-    comp_chooser(laptops)
+    comp_chooser(laptops, b, g, r, m)
     
 if __name__ == "__main__":
     main() 
